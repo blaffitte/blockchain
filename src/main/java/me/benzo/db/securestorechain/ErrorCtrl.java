@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package me.benzo.db.securestorechain;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author xwcj427
+ *
+ */
+
+@RestController("/error")
+public class ErrorCtrl {
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<?> getError() {
+		return ResponseEntity.ok().build();
+	}
+}
