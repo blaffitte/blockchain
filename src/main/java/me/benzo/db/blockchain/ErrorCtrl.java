@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.benzo.db.securestorechain;
+package me.benzo.db.blockchain;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.benzo.db.securestorechain;
+package me.benzo.db.blockchain;
 
 import java.net.MalformedURLException;
 import java.net.URL;

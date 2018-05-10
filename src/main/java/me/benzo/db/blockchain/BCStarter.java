@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.benzo.db.securestorechain;
+package me.benzo.db.blockchain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +15,9 @@ public class BCStarter {
 
 	
 	/**
-	 * Démarrage du framework FwMC Démarrage de l'application via Spring Boot
+	 * Dï¿½marrage du framework FwMC Dï¿½marrage de l'application via Spring Boot
 	 * 
-	 * @param args Les paramètre du lanceur Spring Boot
+	 * @param args Les paramï¿½tre du lanceur Spring Boot
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(BCStarter.class, args);

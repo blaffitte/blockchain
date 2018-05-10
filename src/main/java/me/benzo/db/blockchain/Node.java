@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.benzo.db.securestorechain;
+package me.benzo.db.blockchain;
 
 import java.net.URL;
 
