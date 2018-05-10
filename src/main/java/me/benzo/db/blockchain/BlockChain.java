@@ -197,11 +197,21 @@ public class BlockChain {
 	@RequestMapping(value = "/chain", method = RequestMethod.GET)
 	public ResponseEntity<?> fullChain() {
 		Map<String, Object> response = new HashMap<>();
-		response.put("chain", chain);
-		response.put("length", chain.size());
+		response.put("chain", this.chain);
+		response.put("length", this.chain.size());
 		return ResponseEntity.ok(response);
 	}
+	
+	@RequestMapping(value = "/nodes/whoami", method = RequestMethod.GET)
+	public ResponseEntity<?> whoami(){
+		return ResponseEntity.ok(this.getNodeId());
+	}
 
+	@RequestMapping(value = "/nodes", method = RequestMethod.GET)
+	public ResponseEntity<?> listNodes(){
+		return ResponseEntity.ok(this.nodes);
+	}
+	
 	@RequestMapping(value = "/nodes/register", method = RequestMethod.POST, produces = "text/plain", consumes = "application/json")
 	public String registerNodes(@RequestBody String[] nodes) throws MalformedURLException {
 		StringBuilder builder = new StringBuilder();
