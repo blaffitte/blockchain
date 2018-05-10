@@ -18,5 +18,3 @@ jobs:
       script: mvn install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -B -V
     - stage: test
       script: mvn test -B
-    - stage: integration
-      script: mvn verify -B
