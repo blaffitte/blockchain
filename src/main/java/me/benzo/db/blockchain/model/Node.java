@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.benzo.db.blockchain;
+package me.benzo.db.blockchain.model;
 
 import java.net.URL;
 
