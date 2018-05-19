@@ -54,8 +54,7 @@ public class Block {
 			try {
 				ret.add(fromJson((JSONObject) node));
 			} catch (ParseException | JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException(e.getMessage(), e);
 			}
 		});
 		return ret;
