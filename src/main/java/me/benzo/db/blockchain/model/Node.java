@@ -8,7 +8,7 @@ import java.net.URL;
 import lombok.Data;
 
 /**
- * @author xwcj427
+ * @author blaffitte
  *
  */
 @Data

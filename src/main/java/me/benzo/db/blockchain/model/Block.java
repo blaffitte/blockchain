@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import lombok.Data;
 
 /**
- * @author xwcj427
+ * @author blaffitte
  *
  */
 @Data

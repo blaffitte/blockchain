@@ -3,23 +3,25 @@
  */
 package me.benzo.db.blockchain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.wildfly.swarm.Swarm;
+import org.wildfly.swarm.jaxrs.JAXRSArchive;
 
 /**
- * @author xwcj427
+ * @author blaffitte
  *
  */
-@SpringBootApplication
 public class BCStarter {
 
-	
-	/**
-	 * D�marrage du framework FwMC D�marrage de l'application via Spring Boot
-	 * 
-	 * @param args Les param�tre du lanceur Spring Boot
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(BCStarter.class, args);
+	public static void main(String... args) throws Exception {
+		Swarm swarm = new Swarm(args);
+		swarm.start();
+
+		JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class, "blockchain.war");
+		deployment.addPackages(true, "me/benzo/db");
+		deployment.addAllDependencies();
+		
+
+		swarm.deploy(deployment);
 	}
 }

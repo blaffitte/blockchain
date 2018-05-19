@@ -14,9 +14,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.stereotype.Service;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -32,14 +33,13 @@ import me.benzo.db.blockchain.model.Node;
 import me.benzo.db.blockchain.model.Transaction;
 
 /**
- * @author xwcj427
+ * @author blaffitte
  *
  */
-@Service
+@ApplicationScoped
 @Setter(AccessLevel.PRIVATE)
 @Getter(AccessLevel.PUBLIC)
 public class BlockChain {
-	
 	
 	private String nodeId;
 	private List<Transaction> currentTransactions = new ArrayList<>();
