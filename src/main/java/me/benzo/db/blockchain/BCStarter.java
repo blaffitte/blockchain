@@ -3,7 +3,10 @@
  */
 package me.benzo.db.blockchain;
 
+import java.io.File;
+
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
 
@@ -13,15 +16,23 @@ import org.wildfly.swarm.jaxrs.JAXRSArchive;
  */
 public class BCStarter {
 
-	public static void main(String... args) throws Exception {
-		Swarm swarm = new Swarm(args);
-		swarm.start();
+    public static void main(String... args) throws Exception {
+        Swarm swarm = new Swarm(args);
+        swarm.start();
 
-		JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class, "blockchain.war");
-		deployment.addPackages(true, "me/benzo/db");
-		deployment.addAllDependencies();
-		
+        /* @formatter:off */
+		File[] deps = Maven.resolver()
+		                   .loadPomFromFile("pom.xml")
+				           .resolve("com.mashape.unirest:unirest-java", 
+				                    "org.projectlombok:lombok")
+				           .withTransitivity()
+				           .asFile();
+		/* @formatter:on */
 
-		swarm.deploy(deployment);
-	}
+        JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class, "blockchain.war");
+        deployment.addPackages(true, "me/benzo/db");
+        deployment.addAsLibraries(deps);
+
+        swarm.deploy(deployment);
+    }
 }
