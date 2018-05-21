@@ -54,16 +54,14 @@
 				<artifactId>thorntail-maven-plugin</artifactId>
 				<version>${version.thorntail}</version>
 				<configuration>
-					<!-- global configuration -->
+					<mainClass>me.benzo.db.blockchain.BCApplication</mainClass>
+					<format>jar</format>
 				</configuration>
 				<executions>
 					<execution>
 						<goals>
 							<goal>package</goal>
 						</goals>
-						<configuration>
-							<!-- execution-specific configuration -->
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
