@@ -14,5 +14,5 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/")
 @ApplicationScoped
 public class BCApplication extends Application {
-	
+
 }

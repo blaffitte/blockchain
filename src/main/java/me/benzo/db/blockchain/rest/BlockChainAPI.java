@@ -17,35 +17,35 @@ import me.benzo.db.blockchain.model.Transaction;
 @Produces("application/json")
 public interface BlockChainAPI {
 
-	// web server calls
-	@Path("/mine")
-	@POST
-	Response mine() throws NoSuchAlgorithmException;
+    // web server calls
+    @Path("/mine")
+    @POST
+    Response mine() throws NoSuchAlgorithmException;
 
-	@Path("/chain")
-	@GET
-	Response fullChain();
+    @Path("/chain")
+    @GET
+    Response fullChain();
 
-	@Path("/nodes/whoami")
-	@GET
-	Response whoami();
+    @Path("/nodes/whoami")
+    @GET
+    Response whoami();
 
-	@Path("/nodes")
-	@GET
-	Response listNodes();
+    @Path("/nodes")
+    @GET
+    Response listNodes();
 
-	@Path("/nodes/resolve")
-	@POST
-	Response consensus() throws MalformedURLException, NoSuchAlgorithmException, UnirestException;
+    @Path("/nodes/resolve")
+    @POST
+    Response consensus() throws MalformedURLException, NoSuchAlgorithmException, UnirestException;
 
-	@Path("/transactions")
-	@POST
-	Response createTransaction(Transaction data);
+    @Path("/transactions")
+    @POST
+    Response createTransaction(Transaction data);
 
-	@Path("/nodes/register")
-	@POST
-	@Consumes("application/json")
-	@Produces("test/plain")
-	Response registerNodes(String[] nodes) throws MalformedURLException;
+    @Path("/nodes/register")
+    @POST
+    @Consumes("application/json")
+    @Produces("test/plain")
+    Response registerNodes(String[] nodes) throws MalformedURLException;
 
 }

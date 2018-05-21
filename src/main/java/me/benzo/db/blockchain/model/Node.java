@@ -14,10 +14,10 @@ import lombok.Data;
 @Data
 public class Node {
 
-	private URL address;
+    private URL address;
 
-	public Node(URL address) {
-		this.address = address;
-	}
+    public Node(URL address) {
+        this.address = address;
+    }
 
 }
