@@ -5,6 +5,7 @@ package me.benzo.db.blockchain.model;
 
 import java.net.URL;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -12,12 +13,9 @@ import lombok.Data;
  *
  */
 @Data
+@AllArgsConstructor
 public class Node {
 
     private URL address;
-
-    public Node(URL address) {
-        this.address = address;
-    }
-
+    
 }

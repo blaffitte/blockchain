@@ -15,15 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.GetRequest;
-
+import io.vertx.core.json.JsonObject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -97,32 +89,32 @@ public class BlockChain {
         return true;
     }
 
-    public boolean resolveConflicts() throws UnirestException, MalformedURLException, NoSuchAlgorithmException {
-        List<Block> newChain = null;
-        // int maxLength = this.chain.size();
-
-        for (Node node : this.nodes) {
-            URL url = new URL(node.getAddress(), "/chain");
-            GetRequest request = Unirest.get(url.toString());
-
-            HttpResponse<JsonNode> response = request.asJson();
-
-            if (response.getStatus() == 200) {
-                JSONObject json = response.getBody().getObject();
-                JSONArray jsonChain = json.getJSONArray("chain");
-                List<Block> blocks = Block.fromJsonArray(jsonChain);
-
-                if (blocks.size() > this.chain.size() && isValidChain(blocks)) {
-                    // maxLength = blocks.size();
-                    newChain = blocks;
-                }
-            }
-        }
-
-        if (newChain != null) {
-            this.chain = newChain;
-            return true;
-        }
+    public boolean resolveConflicts()  {
+        // List<Block> newChain = null;
+        // // int maxLength = this.chain.size();
+        //
+        // for (Node node : this.nodes) {
+        // URL url = new URL(node.getAddress(), "/chain");
+        // GetRequest request = Unirest.get(url.toString());
+        //
+        // HttpResponse<JsonNode> response = request.asJson();
+        //
+        // if (response.getStatus() == 200) {
+        // JSONObject json = response.getBody().getObject();
+        // JSONArray jsonChain = json.getJSONArray("chain");
+        // List<Block> blocks = Block.fromJsonArray(jsonChain);
+        //
+        // if (blocks.size() > this.chain.size() && isValidChain(blocks)) {
+        // // maxLength = blocks.size();
+        // newChain = blocks;
+        // }
+        // }
+        // }
+        //
+        // if (newChain != null) {
+        // this.chain = newChain;
+        // return true;
+        // }
 
         return false;
     }
@@ -155,7 +147,7 @@ public class BlockChain {
     }
 
     private String getHash(Block block) throws NoSuchAlgorithmException {
-        String blockText = JSONObject.valueToString(block);
+        String blockText = JsonObject.mapFrom(block).encode();
         return getSha256(blockText);
     }
 
