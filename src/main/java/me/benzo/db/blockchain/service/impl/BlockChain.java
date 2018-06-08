@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +44,7 @@ public class BlockChain {
 
     private String nodeId;
     private List<Transaction> currentTransactions = new ArrayList<>();
-    private List<Block> chain = new ArrayList<>();
+    private List<Block> chain = new LinkedList<>();
     private List<Node> nodes = new ArrayList<>();
     @Setter(AccessLevel.PUBLIC)
     private Block lastBlock;

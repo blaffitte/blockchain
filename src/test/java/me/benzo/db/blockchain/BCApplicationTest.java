@@ -12,6 +12,11 @@ import io.thorntail.test.ThorntailTestRunner;
 public class BCApplicationTest {
     @Test
     public void test() {
-        when().get("/chain").then().statusCode(200).body(containsString("chain"));
+        // @formatter:off
+        when().get("/chain")
+              .then()
+              .statusCode(200)
+              .body(containsString("chain"));
+        // @formatter:on
     }
 }

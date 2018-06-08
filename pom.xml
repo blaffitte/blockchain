@@ -87,7 +87,6 @@
 			<groupId>io.thorntail</groupId>
 			<artifactId>thorntail-jaxrs</artifactId>
 		</dependency>
-
 		<!-- Dev dependencies -->
 		<dependency>
 			<groupId>com.mashape.unirest</groupId>
@@ -111,6 +110,7 @@
 		<dependency>
 			<groupId>io.thorntail</groupId>
 			<artifactId>thorntail-devtools</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

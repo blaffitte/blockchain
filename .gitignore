@@ -4,3 +4,4 @@
 .classpath
 **/*.log
 *.log
+/fakereplace.index
