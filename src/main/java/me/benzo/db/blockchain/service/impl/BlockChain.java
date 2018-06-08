@@ -15,8 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,7 +35,7 @@ import me.benzo.db.blockchain.model.Transaction;
  * @author blaffitte
  *
  */
-@ApplicationScoped
+
 @Setter(AccessLevel.PRIVATE)
 @Getter(AccessLevel.PUBLIC)
 public class BlockChain {
@@ -59,9 +57,20 @@ public class BlockChain {
         }
     }
 
-    // private functionality
     public void registerNode(String address) throws MalformedURLException {
         this.nodes.add(new Node(new URL(address)));
+    }
+
+    public void createTransaction(final Transaction data) {
+        this.getCurrentTransactions().add(data);
+    }
+
+    public void mine() throws NoSuchAlgorithmException {
+        int proof = this.createProofOfWork(this.getLastBlock().getProof(), this.getLastBlock().getPreviousHash());
+
+        this.createTransaction(new Transaction(this.getNodeId(), "0", ""));
+        Block block = this.createNewBlock(proof, null /* , _getLastBlock().PreviousHash */);
+        this.setLastBlock(block);
     }
 
     public boolean isValidChain(List<Block> chain) throws NoSuchAlgorithmException {

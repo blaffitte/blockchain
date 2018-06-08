@@ -6,75 +6,82 @@
 	<artifactId>blockchain</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<repositories>
-		<repository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
 
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<!-- dependencies version -->
-		<version.thorntail>4.0.0-SNAPSHOT</version.thorntail>
 		<version.lombok>1.16.4</version.lombok>
-		<version.shrinkwrap.resolvers>3.1.3</version.shrinkwrap.resolvers>
+		<version.vertx>3.5.2</version.vertx>
+		<version.vertx-maven-plugin>1.0.15</version.vertx-maven-plugin>
 	</properties>
 
 	<build>
 		<finalName>blockchain</finalName>
 		<plugins>
 			<plugin>
-				<groupId>io.thorntail</groupId>
-				<artifactId>thorntail-maven-plugin</artifactId>
-				<version>${version.thorntail}</version>
-				<configuration>
-					<mainClass>me.benzo.db.blockchain.BCApplication</mainClass>
-					<format>jar</format>
-				</configuration>
+				<groupId>io.reactiverse</groupId>
+				<artifactId>vertx-maven-plugin</artifactId>
+				<version>${version.vertx-maven-plugin}</version>
 				<executions>
 					<execution>
+						<id>vmp</id>
 						<goals>
+							<goal>initialize</goal>
 							<goal>package</goal>
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<redeploy>true</redeploy>
+				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											io.reactiverse
+										</groupId>
+										<artifactId>
+											vertx-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.15,)
+										</versionRange>
+										<goals>
+											<goal>initialize</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>io.thorntail</groupId>
-				<artifactId>thorntail-bom</artifactId>
-				<version>${version.thorntail}</version>
+				<groupId>io.vertx</groupId>
+				<artifactId>vertx-dependencies</artifactId>
+				<version>${version.vertx}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -82,10 +89,10 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Thorntail dependencies -->
+		<!-- Vert.x dependencies -->
 		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>thorntail-jaxrs</artifactId>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
 		</dependency>
 		<!-- Dev dependencies -->
 		<dependency>
@@ -100,18 +107,10 @@
 		</dependency>
 
 		<!-- Test dependencies -->
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>thorntail-testing</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 
 		<!-- Tools dependencies -->
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>thorntail-devtools</artifactId>
-			<scope>provided</scope>
-		</dependency>
+
 	</dependencies>
 
 </project>
