@@ -10,7 +10,7 @@ public class BlockchainStarter {
         vertx.deployVerticle("me.benzo.db.blockchain.RestApiVerticle", res -> {
             if (res.succeeded()) {
                 System.out.println("Start Blockchain");
-                vertx.deployVerticle("me.benzo.db.blockchain.TransactionVerticle", trans -> {
+                vertx.deployVerticle("me.benzo.db.blockchain.BlockVerticle", trans -> {
                     if (trans.succeeded()) {
                         System.out.println("OK");
                     }
