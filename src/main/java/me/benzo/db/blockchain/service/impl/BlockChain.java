@@ -89,41 +89,13 @@ public class BlockChain {
         return true;
     }
 
-    public boolean resolveConflicts()  {
-        // List<Block> newChain = null;
-        // // int maxLength = this.chain.size();
-        //
-        // for (Node node : this.nodes) {
-        // URL url = new URL(node.getAddress(), "/chain");
-        // GetRequest request = Unirest.get(url.toString());
-        //
-        // HttpResponse<JsonNode> response = request.asJson();
-        //
-        // if (response.getStatus() == 200) {
-        // JSONObject json = response.getBody().getObject();
-        // JSONArray jsonChain = json.getJSONArray("chain");
-        // List<Block> blocks = Block.fromJsonArray(jsonChain);
-        //
-        // if (blocks.size() > this.chain.size() && isValidChain(blocks)) {
-        // // maxLength = blocks.size();
-        // newChain = blocks;
-        // }
-        // }
-        // }
-        //
-        // if (newChain != null) {
-        // this.chain = newChain;
-        // return true;
-        // }
-
-        return false;
-    }
+    
 
     public Block createNewBlock(int proof, String previousHash) throws NoSuchAlgorithmException {
         Block block = new Block();
         block.setIndex(this.chain.size());
         block.setTimestamp(new Timestamp(new Date().getTime()));
-        block.setTransactions(this.currentTransactions);
+       // block.setContents(JsonObject.mapFrom(this.currentTransactions));
         block.setProof(proof);
         block.setPreviousHash(previousHash != null ? previousHash : getHash(this.chain.get(this.chain.size() - 1)));
 
