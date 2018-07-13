@@ -35,6 +35,7 @@
 				</executions>
 				<configuration>
 					<redeploy>true</redeploy>
+					<verticle>me.benzo.db.blockchain.BlockchainStarter</verticle>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -94,6 +95,10 @@
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.vertx</groupId>

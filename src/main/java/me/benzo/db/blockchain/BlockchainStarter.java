@@ -1,11 +1,11 @@
 package me.benzo.db.blockchain;
 
-import io.vertx.reactivex.core.Vertx;
+import io.vertx.reactivex.core.AbstractVerticle;
+// java -jar target/blockchain.jar run me.benzo.db.blockchain.BlockchainStarter
+public class BlockchainStarter extends AbstractVerticle {
 
-public class BlockchainStarter {
-
-    public static void main(String[] args) {
-        final Vertx vertx = Vertx.vertx();
+    @Override
+    public void start() {
         System.out.println("Start Rest API");
         vertx.deployVerticle("me.benzo.db.blockchain.RestApiVerticle", res -> {
             if (res.succeeded()) {
