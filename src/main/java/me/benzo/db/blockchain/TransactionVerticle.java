@@ -6,6 +6,7 @@ package me.benzo.db.blockchain;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.vertx.core.json.JsonObject;
 import io.vertx.reactivex.core.AbstractVerticle;
 import io.vertx.reactivex.core.eventbus.EventBus;
 import io.vertx.reactivex.core.eventbus.Message;
@@ -27,8 +28,8 @@ public class TransactionVerticle extends AbstractVerticle {
        blockChainBus.consumer("transaction", this::consumeTransaction);
     }
 
-    private void consumeTransaction(Message<Transaction> message) {
-        Transaction t = message.body();
+    private void consumeTransaction(Message<JsonObject> message) {
+        Transaction t = message.body().mapTo(Transaction.class);
         this.currentTransactions.add(t);
     }
     
