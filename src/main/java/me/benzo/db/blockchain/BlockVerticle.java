@@ -1,15 +1,7 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 import io.reactivex.exceptions.Exceptions;
 import io.vertx.core.json.JsonObject;
@@ -18,6 +10,14 @@ import io.vertx.reactivex.core.eventbus.EventBus;
 import io.vertx.reactivex.core.eventbus.Message;
 import me.benzo.db.blockchain.model.Block;
 import me.benzo.db.blockchain.model.NewBlock;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author blaffitte
@@ -31,18 +31,18 @@ public class BlockVerticle extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         blockChainBus = vertx.eventBus();
+        blockChainBus.consumer("GettingBlockChain", this::gettingBlockChain);
         blockChainBus.consumer("CreateBlock", this::createNewBlock);
         blockChainBus.consumer("ForgeBlock", this::miningBlock);
-        blockChainBus.consumer("GettingBlockChain", this::gettingBlockChain);
     }
-    
+
     private void gettingBlockChain(Message<JsonObject> message) {
         JsonObject json = JsonObject.mapFrom(this.blockChain);
         this.blockChainBus.publish("GettingBlockChainResponse", json);
     }
 
     private void miningBlock(Message<JsonObject> message) {
-        Block lastBlock = blockChain.get(blockChain.size()-1);
+        Block lastBlock = blockChain.get(blockChain.size() - 1);
         int proof = this.createProofOfWork(lastBlock.getProof(), lastBlock.getPreviousHash());
 
         this.blockChain.add(lastBlock);
@@ -106,35 +106,5 @@ public class BlockVerticle extends AbstractVerticle {
         }
 
         return hashBuilder.toString();
-    }
-
-    private boolean resolveConflicts() {
-        // List<Block> newChain = null;
-        // // int maxLength = this.chain.size();
-        //
-        // for (Node node : this.nodes) {
-        // URL url = new URL(node.getAddress(), "/chain");
-        // GetRequest request = Unirest.get(url.toString());
-        //
-        // HttpResponse<JsonNode> response = request.asJson();
-        //
-        // if (response.getStatus() == 200) {
-        // JSONObject json = response.getBody().getObject();
-        // JSONArray jsonChain = json.getJSONArray("chain");
-        // List<Block> blocks = Block.fromJsonArray(jsonChain);
-        //
-        // if (blocks.size() > this.chain.size() && isValidChain(blocks)) {
-        // // maxLength = blocks.size();
-        // newChain = blocks;
-        // }
-        // }
-        // }
-        //
-        // if (newChain != null) {
-        // this.chain = newChain;
-        // return true;
-        // }
-
-        return false;
     }
 }

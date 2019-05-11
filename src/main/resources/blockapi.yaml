@@ -1,0 +1,26 @@
+openapi: 3.0.2
+info: 
+  title: 'API pour manipuler la blockchain'
+  version: '1.0.0'
+paths: 
+  /chain:
+    get:
+     description: 'List blockchain content'
+     operationId: 'GettingBlockChain'
+     responses:
+        '2XX':
+          description: OK
+  /chain/blocks:
+    post:
+      description: 'Create new block'
+      operationId: 'CreateBlock'
+      responses:
+        '2XX':
+          description: OK
+  /chain/blocks/mine:
+    post:
+      description: 'Insert block in chain's
+      operationId: 'ForgeBlock'
+      responses:
+        '2XX':
+          description: OK

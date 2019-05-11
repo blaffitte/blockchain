@@ -1,15 +1,15 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain.model;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 import io.vertx.core.json.JsonObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author blaffitte

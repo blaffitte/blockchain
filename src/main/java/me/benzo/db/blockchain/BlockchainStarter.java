@@ -1,6 +1,7 @@
 package me.benzo.db.blockchain;
 
 import io.vertx.reactivex.core.AbstractVerticle;
+
 // java -jar target/blockchain.jar run me.benzo.db.blockchain.BlockchainStarter
 public class BlockchainStarter extends AbstractVerticle {
 

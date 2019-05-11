@@ -1,19 +1,7 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain.service.impl;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
 
 import io.vertx.core.json.JsonObject;
 import lombok.AccessLevel;
@@ -22,6 +10,14 @@ import lombok.Setter;
 import me.benzo.db.blockchain.model.Block;
 import me.benzo.db.blockchain.model.Node;
 import me.benzo.db.blockchain.model.Transaction;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * @author blaffitte
@@ -89,13 +85,12 @@ public class BlockChain {
         return true;
     }
 
-    
 
     public Block createNewBlock(int proof, String previousHash) throws NoSuchAlgorithmException {
         Block block = new Block();
         block.setIndex(this.chain.size());
         block.setTimestamp(new Timestamp(new Date().getTime()));
-       // block.setContents(JsonObject.mapFrom(this.currentTransactions));
+        // block.setContents(JsonObject.mapFrom(this.currentTransactions));
         block.setProof(proof);
         block.setPreviousHash(previousHash != null ? previousHash : getHash(this.chain.get(this.chain.size() - 1)));
 

@@ -8,3 +8,6 @@
 **/*.log
 *.log
 /fakereplace.index
+/.DS_Store/
+.DS_Store
+/.idea/

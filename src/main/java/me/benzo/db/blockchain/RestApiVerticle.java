@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain;
 
@@ -33,7 +33,7 @@ public class RestApiVerticle extends AbstractVerticle {
             bus.publish("CreateBlock", routingContext.getBodyAsJson());
             routingContext.response().setStatusCode(200).end();
         });
-        
+
         router.route(HttpMethod.POST, "/api/chain/mine").handler(routingContext -> {
             // NewBlock Body
             bus.publish("ForgeBlock", routingContext.getBodyAsJson());

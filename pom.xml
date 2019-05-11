@@ -1,121 +1,89 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>me.benzo.db</groupId>
-	<artifactId>blockchain</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>me.benzo.db</groupId>
+    <artifactId>blockchain</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
 
-	<properties>
-		<java.version>1.8</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<version.lombok>1.18.0</version.lombok>
-		<version.vertx>3.5.3</version.vertx>
-		<version.vertx-maven-plugin>1.0.15</version.vertx-maven-plugin>
-	</properties>
+    <properties>
+        <java.version>12</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <version.lombok>1.18.8</version.lombok>
+        <version.vertx>3.7.0</version.vertx>
+        <version.vertx-maven-plugin>1.0.18</version.vertx-maven-plugin>
+    </properties>
 
-	<build>
-		<finalName>blockchain</finalName>
-		<plugins>
-			<plugin>
-				<groupId>io.reactiverse</groupId>
-				<artifactId>vertx-maven-plugin</artifactId>
-				<version>${version.vertx-maven-plugin}</version>
-				<executions>
-					<execution>
-						<id>vmp</id>
-						<goals>
-							<goal>initialize</goal>
-							<goal>package</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<redeploy>true</redeploy>
-					<verticle>me.benzo.db.blockchain.BlockchainStarter</verticle>
-				</configuration>
-			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											io.reactiverse
-										</groupId>
-										<artifactId>
-											vertx-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.0.15,)
-										</versionRange>
-										<goals>
-											<goal>initialize</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+    <build>
+        <finalName>blockchain</finalName>
+        <plugins>
+            <plugin>
+                <groupId>io.reactiverse</groupId>
+                <artifactId>vertx-maven-plugin</artifactId>
+                <version>${version.vertx-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>vmp</id>
+                        <goals>
+                            <goal>initialize</goal>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <redeploy>true</redeploy>
+                    <verticle>me.benzo.db.blockchain.BlockchainStarter</verticle>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.vertx</groupId>
-				<artifactId>vertx-dependencies</artifactId>
-				<version>${version.vertx}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-dependencies</artifactId>
+                <version>${version.vertx}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<dependencies>
-		<!-- Vert.x dependencies -->
-		<dependency>
-			<groupId>io.vertx</groupId>
-			<artifactId>vertx-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.vertx</groupId>
-			<artifactId>vertx-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.vertx</groupId>
-			<artifactId>vertx-rx-java2</artifactId>
-		</dependency>
-		<!-- Dev dependencies -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${version.lombok}</version>
-		</dependency>
+    <dependencies>
+        <!-- Vert.x dependencies -->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-rx-java2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-api-contract</artifactId>
+        </dependency>
+        <!-- Dev dependencies -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.lombok}</version>
+        </dependency>
 
-		<!-- Test dependencies -->
+        <!-- Test dependencies -->
 
 
-		<!-- Tools dependencies -->
+        <!-- Tools dependencies -->
 
-	</dependencies>
+    </dependencies>
 
 </project>

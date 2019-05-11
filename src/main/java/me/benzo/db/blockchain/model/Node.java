@@ -1,12 +1,12 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain.model;
 
-import java.net.URL;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.net.URL;
 
 /**
  * @author blaffitte
@@ -17,5 +17,5 @@ import lombok.Data;
 public class Node {
 
     private URL address;
-    
+
 }

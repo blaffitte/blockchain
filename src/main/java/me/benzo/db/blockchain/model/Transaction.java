@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package me.benzo.db.blockchain.model;
 
